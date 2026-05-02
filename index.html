@@ -484,9 +484,13 @@
       var currentEditTarget = null;
 
       // Logo yükleme
-      var savedLogo = localStorage.getItem('site_logo');
-      if (savedLogo) logoImg.src = savedLogo;
-
+      // Logo yükleme
+var savedLogo = localStorage.getItem('site_logo');
+if (savedLogo) {
+    logoImg.src = savedLogo;
+} else {
+    logoImg.src = "logo.png"; // Hafıza boşsa klasördeki png dosyasını kullan
+}
       // ============ Render ============
       function renderPage(page) {
         if (!contentArea) return;
