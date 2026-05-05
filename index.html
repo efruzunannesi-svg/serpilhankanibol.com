@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -50,20 +49,19 @@
             text-shadow: 2px 2px 0 #1A237E;
             cursor: default;
         }
-        /* LOGO - yuvarlak çerçeve yok, büyük ve net */
+        /* LOGO - tamamen kareyi dolduruyor, hiç boşluk yok */
         .logo-area {
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .logo-area img {
             width: 100px;
             height: 100px;
-            object-fit: contain;
             background-color: #F5F5DC;
-            border-radius: 0;
-            padding: 0;
-            border: none;
+        }
+        .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
         .nav-row {
@@ -184,7 +182,7 @@
             .site-title {
                 font-size: 1.5rem;
             }
-            .logo-area img {
+            .logo-area {
                 width: 80px;
                 height: 80px;
             }
@@ -251,7 +249,7 @@
         <p>Belki de birçok sorunuzun çözümü olacak bu yazma eylemi. <strong>Neden denemeyesiniz ki?</strong></p>
     `;
 
-    // YAZIM ATÖLYESİ (eksiksiz, orijinal metne sadık)
+    // YAZIM ATÖLYESİ (eksiksiz)
     const yazimAtolyesiHTML = `
         <h2>Yazım Atölyesi</h2>
         <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bu eğitimler her tür yazının temeli olan önerme ile başlar. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir. Bu sebep sizin derdinizdir. Dünyanın küresel sorunlarından tutun da saksınızda solan çiçeğe kadar her şey sizin derdiniz olabilir. Sizin dert edindiğinizin başka insanlarca bilinmesini istiyorsunuz ama onların dikkatini çekmenin yolunu bulamıyorsunuz. İşin bu kısmında size destek olacak şey devasa bir hoparlör yahut her yerde yanıp sönen neon ışıklar değil. Sizin kelimeleriniz. O kelimeler ki sizi onlara yaklaştıracak, sizin fikrinizi onlara taşıyacak, sizin derdinizle dertlenmelerini sağlayacak. İşte bunun için en temelde yazacağınız eser ne olursa olsun sağlam bir zemine bağlamalı ve o zeminin üzerinde dimdik durabilmelidir.</p>
