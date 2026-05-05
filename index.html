@@ -18,30 +18,30 @@
 
     /* NAVİGASYON */
     .nav-bar { background: #fff; display: flex; justify-content: center; gap: 10px; padding: 1rem; border-bottom: 2px solid #008080; flex-wrap: wrap; }
-    .nav-btn { background: #2d0a3d; color: #F5F5DC; border: 2px solid #ffc200; padding: 0.6rem 1.2rem; border-radius: 25px; cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
-    .nav-btn:hover { background: #008080; border-color: #F5F5DC; }
+    .nav-btn { background: #2d0a3d; color: #F5F5DC; border: 2px solid #ffc200; padding: 0.6rem 1.2rem; border-radius: 25px; cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 0.9rem; border: none; }
+    .nav-btn:hover { background: #008080; color: #fff; }
 
-    /* İÇERİK */
+    /* İÇERİK SEKSİYONLARI */
     .content-section { padding: 2.5rem; display: none; min-height: 450px; }
     .content-section.active { display: block; animation: fadeIn 0.5s; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    h2 { color: #2d0a3d; border-left: 6px solid #008080; padding-left: 15px; margin-bottom: 1.5rem; font-size: 1.8rem; }
-    h3 { color: #008080; margin: 1.5rem 0 0.5rem; }
+    h2 { color: #2d0a3d; border-left: 6px solid #008080; padding-left: 15px; margin-bottom: 1.5rem; font-size: 1.8rem; text-transform: uppercase; }
+    h3 { color: #008080; margin: 1.5rem 0 0.8rem; font-size: 1.4rem; }
     p { margin-bottom: 1.2rem; text-align: justify; }
+    ul { margin-bottom: 1.2rem; padding-left: 1.5rem; }
 
-    /* AKORDİYON TASARIMI */
+    /* AKORDİYON (YAZIM ATÖLYESİ) */
     details { background: #fff; border: 2px solid #008080; border-radius: 12px; margin-bottom: 1rem; padding: 1rem; transition: 0.3s; }
-    details[open] { border-color: #ffc200; }
-    summary { font-weight: bold; font-size: 1.1rem; cursor: pointer; outline: none; display: flex; align-items: center; }
+    details[open] { border-color: #ffc200; background: #fafafa; }
+    summary { font-weight: bold; font-size: 1.2rem; cursor: pointer; outline: none; list-style: none; display: flex; align-items: center; }
     summary::before { content: "◈ "; color: #008080; margin-right: 10px; }
-    .details-body { padding-top: 1rem; border-top: 1px solid #eee; margin-top: 0.5rem; }
 
-    /* MOBİL UYUMLULUK */
+    /* MOBİL AYARLAR */
     @media (max-width: 600px) {
       .site-header { flex-direction: column; text-align: center; gap: 1rem; }
       .content-section { padding: 1.5rem; }
-      .nav-btn { width: 100%; text-align: center; }
+      .nav-btn { width: 100%; }
     }
   </style>
 </head>
@@ -54,46 +54,57 @@
   </header>
 
   <nav class="nav-bar">
-    <a href="#" class="nav-btn" onclick="showSection('anasayfa')">ANA SAYFA</a>
-    <a href="#" class="nav-btn" onclick="showSection('atolye')">YAZIM ATÖLYESİ</a>
-    <a href="#" class="nav-btn" onclick="showSection('makaleler')">MAKALELER</a>
-    <a href="#" class="nav-btn" onclick="showSection('iletisim')">İLETİŞİM</a>
+    <button class="nav-btn" onclick="showSection('anasayfa')">ANA SAYFA</button>
+    <button class="nav-btn" onclick="showSection('atolye')">YAZIM ATÖLYESİ</button>
+    <button class="nav-btn" onclick="showSection('makaleler')">MAKALELER</button>
+    <button class="nav-btn" onclick="showSection('iletisim')">İLETİŞİM</button>
   </nav>
 
   <!-- ANA SAYFA -->
   <section id="anasayfa" class="content-section active">
-    <h2>Serpilhan Kanıbol Kimdir?</h2>
-    <p>Serpilhan Kanıbol pek çok alanda yazım çalışmaları yapmış, yazım atölyesi eğitimleri vermiş, yazı dilinde pek çok şeyin çözülebileceğine inanan o kişidir[cite: 4].</p>
-    <p>İnsan hayata çevresiyle başlar. Çevresiyle şekillenir. İnsan bir nevi çevresinin eseridir. Ama insan kendini tanımaya kelimelerle başlar. En çok ihtiyacı olan kelimeleri söyler ilkin[cite: 4].</p>
-    <p>Serpilhan KANIBOL yazının gücünü insanın en üstün güçlerinden biri olarak görür. Yazmak en iyi terapi yöntemlerinden biridir. Birçok sanat dalının aksine yazı için tek materyal sizsiniz[cite: 4].</p>
+    <h2>Serpilhan Kanıbol kimdir?</h2>
+    <p>Serpilhan Kanıbol pek çok alanda yazım çalışmaları yapmış, yazım atölyesi eğitimleri vermiş, yazı dilinde pek çok şeyin çözülebileceğine inanan o kişidir[cite: 5].</p>
+    <p>İnsan hayata çevresiyle başlar. Çevresiyle şekillenir. İnsan bir nevi çevresinin eserdir. Ama insan kendini tanımaya kelimelerle başlar. En çok ihtiyacı olan kelimeleri söyler ilkin. Mama der, ana der, baba der… Sonra o annenin, babanın kelimelerini katar kendine. Bu kendine katma süreci bir ömür sürer. Çevresinden alır, özünde eritir. Biz o insana bakınca o açıkça göstermedikçe özünü görmeyiz. Bize gelen onun kelimeleridir. Her yerde kelimeler uçuşur, herkes kendini ifade etme derdine düşer. Kimimiz kimseye güvenmediğimizi gizlediğimiz kelimelerle gösteririz, kimimiz de yaşam enerjimizi. İşte tam da bu noktada biz yazıyla buluşuruz[cite: 5].</p>
+    <p>Serpilhan KANIBOL yazının gücünü insanın en üstün güçlerinden biri olarak görür. Herkesin anlatacak bir şeyi olur, anlatmak istemediklerinin de anlaşılmasını ister. Ama söz uçup da yazı kaldığında, özün kelimeleri insanı anlatmaya başlar[cite: 5].</p>
+    <p>Yazmak en iyi terapi yöntemlerinden biridir. Birçok sanat dalının aksine yazı için tek materyal sizsiniz. Her yerde her zaman yazabilirsiniz. Ama kendinizi daha iyi ifade ettiğinizde bu size gerçek bir terapi hissiyatı verecektir[cite: 5].</p>
+    <p>Kendi kendinizi terapi edebilmek, yarına bugünden bir şeyler bırakabilmek için hazır mısınız? Bu sayfada çeşitli yazı türlerinde eserler ortaya koyabilmek için rehber olmak istedik. Ne yazmak istiyorsunuz? Nasıl yazmak istiyorsunuz? Nasıl bir kitle için yazmak istiyorsunuz? Nasıl daha etkili bir anlatım gerçekleştirebilirsiniz? Yazmak size nasıl hissettirecek? Belki de birçok sorununuzun çözümü olacak bu yazma eylemi. Neden denemeyesiniz ki?[cite: 5]</p>
   </section>
 
   <!-- YAZIM ATÖLYESİ -->
   <section id="atolye" class="content-section">
-    <h2>Yazım Atölyesi</h2>
-    <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir[cite: 4].</p>
-    
+    <h2>YAZIM ATÖLYESİ</h2>
+    <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bu eğitimler her tür yazının temeli olan önerme ile başlar. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir. Bu sebep sizin derdinizdir. Dünyanın küresel sorunlarından tutun da saksınızda solan çiçeğe kadar her şey sizin derdiniz olabilir[cite: 5].</p>
+    <p>Sizin dert edindiğinizin başka insanlarca bilinmesini istiyorsunuz ama onların dikkatini çekmenin yolunu bulamıyorsunuz. İşin bu kısmında size destek olacak şey devasa bir hoparlör yahut her yerde yanıp sönen neon ışıklar değil. Sizin kelimeleriniz. O kelimeler ki sizi onlara yaklaştıracak, sizin fikrinizi onlara taşıyacak, sizin derdinizle dertlenmelerini sağlayacak. İşte bunun için en temelde yazacağınız eser ne olursa olsun sağlam bir zemine bağlamalı ve o zeminin üzerinde dimdik durabilmelidir[cite: 5].</p>
+
     <details>
       <summary>TİYATRO</summary>
-      <div class="details-body">
-        <p>Tiyatro, sinema ve televizyon projeleri için metin temeldir. Yazara güvenmek ister. Yazar yazdığının arkasında duracak kadar sağlam bir kalem taşımalıdır[cite: 4].</p>
-        <p>Yazım atölyemizde tiyatro metinleri yazmak, yazılı eserleri oyunlaştırmak için aşamalı bir eğitim sunuyoruz[cite: 4].</p>
+      <div style="padding-top:10px">
+        <p>Tiyatro, sinema ve televizyon projeleri için metin temeldir. Yani yazar yahut senarist bir şey yazmadıkça ne oyun çıkar ne de film çekilir. Oyuncu da yönetmen de yazarın bu önceliğini bilir. Yazara güvenmek ister. Yazar yazdığının arkasında duracak kadar sağlam bir kalem taşımalıdır. Biz de bu sebeple tiyatro ve sinemayı diğer yazı türlerinden bağımsız ele alırız[cite: 5].</p>
+        <p>Yazım atölyemizde tiyatro metinleri yazmak, yazılı eserleri oyunlaştırmak, oyunlarımızın içini müzik eserleri ile donatmak için aşamalı bir eğitim sunuyoruz. Bir fikrin doğru kitleye ulaştırılması da eserin iyi bir kalemden çıkması kadar önem taşır. Bu nedenle eser oluşturmadaki bir sonraki amacımız kitlesine uygun eser ortaya koymaktır[cite: 5].</p>
+        <p>Çocuk oyunları ülkemizde en önemli ve en narin alandır. Yazarından yönetmenine, oyuncusundan rejisine kadar her çalışma grubu hedefteki çocuklara özel hazırlanmalıdır[cite: 5].</p>
       </div>
     </details>
 
     <details>
       <summary>SİNEMA</summary>
-      <div class="details-body">
-        <p>Beyaz Perde. 1900lerin icadı ve geleceğin mimarı o muhteşem sanat. Tüm yazım kurallarından ayrı bu büyülü dünyanın tercümanı olmak senaristin eseridir[cite: 4].</p>
-        <p>Bu atölye size bir filmi herkesen önce izleme imkanı sunar. Oyuncu oynamadan, yönetmen çekmeden siz jeneriğine kadar izlersiniz[cite: 4].</p>
+      <div style="padding-top:10px">
+        <p>Beyaz Perde. Bizim koskoca bir ekranla, karanlık bir ortamda baş başa kaldığımız, kendi dünyamıza yeni bir dünya kattığımız 1900lerin icadı ve geleceğin mimarı o muhteşem sanat. İnsan aklının sınırlarını zorlayan görseller, nefes kesen aksiyonlar, yüreğimizi paramparça eden dramatik anlar… işte tüm bunlar ilk önce, herkesten önce senaristin zihninde oluşuyor[cite: 5].</p>
+        <p>Tüm yazım kurallarından ayrı bu büyülü dünyanın tercümanı olmak, oyuncuya karakter, yönetmene tarz vermek tabiri caizse senaristin eseridir. Bu nedenle senaryo yazmak, sinema dilini bilmek, sinema için bir şeyler yapabilmek için kurduğumuz bu atölye size bir filmi herkesten önce izleme imkanı sunar[cite: 5].</p>
       </div>
     </details>
 
     <details>
       <summary>EDEBİYAT</summary>
-      <div class="details-body">
-        <p>Edebi eser yazmak kişisel yetenek ve yeterlilik ister. Bu atölyemizde öncelikle yeteneği anlama, sınırlarını zorlama ve kalıpların içinde kendini bulma çalışmaları yapıyoruz[cite: 4].</p>
-        <p>Deneme, Hikaye, Roman ve Makale türlerinde eserler çıkarmak için birlikte yürüyoruz[cite: 4].</p>
+      <div style="padding-top:10px">
+        <p>Edebi eser yazmak kişisel yetenek ve eseri ortaya çıkaracak kadar yeterlilik ister. Ancak her yetenek eğitilip kalıplara girdikçe gözlemlenebilir. Gerçek yetenek girdiği kalıbın şeklini değiştirebilecek, avangart atılımlar yapabilecek düzeye gelmek ister[cite: 5].</p>
+        <p>Bu atölyemizde öncelikle yeteneği anlama, yeteneğin sınırlarını zorlama; sonrasında da kalıpların içinde kendini bulma çalışmaları yapıyoruz[cite: 5].</p>
+        <ul>
+          <li>Deneme</li>
+          <li>Hikaye</li>
+          <li>Roman</li>
+          <li>Makale</li>
+        </ul>
+        <p>Türlerinde eserler çıkarmak için gidilecek yolu birlikte yürüyoruz[cite: 5].</p>
       </div>
     </details>
   </section>
@@ -101,19 +112,23 @@
   <!-- MAKALELER -->
   <section id="makaleler" class="content-section">
     <h2>Makaleler</h2>
-    <div style="background: #fff; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ffc200;">
-      <h3>İÇİMDE BİR DENİZ VAR, KÖPÜRÜP DURUYOR</h3>
-      <p>Çocuklarımızla iletişim kurmak her geçen gün daha karmaşık bir hal alıyor. Çocukların fevri davranışlarını ebeveynler olarak anlamlandıramıyoruz[cite: 4].</p>
-      <p>Çocuğun ağzından dökülmeyen şu cümleye kulak vereceğiz: “İçimde bir deniz var. Köpürüp duruyor.” Ona boş bir kağıt verelim. O denizi bir okyanusa akıtsın. Kelimelerin okyanusuna[cite: 4].</p>
+    <div style="background: #fff; padding: 2rem; border-radius: 15px; border-left: 5px solid #ffc200; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+      <h3>İÇİMDE BİR DENİZ VAR, KÖPÜRÜP DURUYOR.</h3>
+      <p>Çocuklarımızla iletişim kurmak her geçen gün daha karmaşık bir hal alıyor. Bu konuda da tabiri caizse ağzı olan konuşuyor. Bizim de bir ağzımız var ve birkaç şey de biz söyleyelim dedik[cite: 5].</p>
+      <p>Çocukların fevri davranışlarını ve aniden ortaya çıkan ataklarını anne babalar olarak anlamlandıramıyoruz. Televizyonda uzmanlar, okulda öğretmenler sürekli sorunun çocukların ekran sürelerinde olduğunu hatırlatıyor ve onları ekranlardan uzak tutmanın sorunu çözmede büyük bir adım olacağını söylüyor. Ama sadece adım. Yani sorunun kaynağı hala yerinde[cite: 5].</p>
+      <p>Çocuğun ağzından dökülmeyen şu cümleye kulak vereceğiz: “İçimde bir deniz var. Köpürüp duruyor.” Biz bunu anladıktan sonra yol gösterebiliriz. Onu anlamaya çalışabiliriz[cite: 5].</p>
+      <p>Çocuğumuz içindeki denizin köpüklerinden endişeleniyor, derinliğinden korkuyorsa ona boş bir kağıt verelim. O denizi bir okyanusa akıtsın. Kelimelerin okyanusuna. Sahip olduğu duyguları hiçbir etiketlenme endişesi olmadan döksün o okyanusa. Yazmayı öğütleyelim çocuklarımıza. İçinde taşımaya korktuğu, ağırlığıyla yorulduğu her şeyin durulacağı bir deniz verelim onlara[cite: 5].</p>
     </div>
   </section>
 
   <!-- İLETİŞİM -->
   <section id="iletisim" class="content-section">
     <h2>İletişim</h2>
-    <p>Eğitimler, atölye çalışmaları ve projeler hakkında bilgi almak için iletişime geçebilirsiniz.</p>
-    <p><strong>E-posta:</strong> info@serpilhankanibol.com</p>
-    <p><strong>Sosyal Medya:</strong> @serpilhankanibol</p>
+    <p>Projeler, eğitimler ve yazım atölyesi hakkında detaylı bilgi almak için aşağıdaki kanallardan ulaşabilirsiniz:</p>
+    <div style="margin-top: 20px;">
+      <p><strong>E-posta:</strong> info@serpilhankanibol.com</p>
+      <p><strong>Instagram:</strong> @serpilhankanibol</p>
+    </div>
   </section>
 </div>
 
