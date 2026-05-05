@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -49,14 +50,21 @@
             text-shadow: 2px 2px 0 #1A237E;
             cursor: default;
         }
+        /* LOGO - yuvarlak çerçeve yok, büyük ve net */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .logo-area img {
-            width: 85px;
-            height: 85px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
-            border-radius: 50%;
             background-color: #F5F5DC;
-            padding: 5px;
-            border: 2px solid #C5A059;
+            border-radius: 0;
+            padding: 0;
+            border: none;
+            display: block;
         }
         .nav-row {
             background-color: #F5F5DC;
@@ -177,8 +185,8 @@
                 font-size: 1.5rem;
             }
             .logo-area img {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
             }
             .nav-row {
                 gap: 0.5rem;
@@ -202,7 +210,7 @@
     <div class="site-header">
         <div class="site-title">SERPİLHAN KANIBOL</div>
         <div class="logo-area">
-            <img id="siteLogo" src="favicon.png" alt="Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%232d0a3d\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'48\' text-anchor=\'middle\' fill=\'%23C5A059\' font-family=\'Arial\' font-weight=\'bold\'%3ESK%3C/text%3E%3C/svg%3E'">
+            <img id="siteLogo" src="favicon.png" alt="Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%232d0a3d\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23C5A059\' font-family=\'Arial\' font-weight=\'bold\'%3ESK%3C/text%3E%3C/svg%3E'">
         </div>
     </div>
     <div class="nav-row" id="navMenu">
@@ -243,7 +251,7 @@
         <p>Belki de birçok sorunuzun çözümü olacak bu yazma eylemi. <strong>Neden denemeyesiniz ki?</strong></p>
     `;
 
-    // YAZIM ATÖLYESİ - eksiksiz, orijinal metne sadık, zengin
+    // YAZIM ATÖLYESİ (eksiksiz, orijinal metne sadık)
     const yazimAtolyesiHTML = `
         <h2>Yazım Atölyesi</h2>
         <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bu eğitimler her tür yazının temeli olan önerme ile başlar. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir. Bu sebep sizin derdinizdir. Dünyanın küresel sorunlarından tutun da saksınızda solan çiçeğe kadar her şey sizin derdiniz olabilir. Sizin dert edindiğinizin başka insanlarca bilinmesini istiyorsunuz ama onların dikkatini çekmenin yolunu bulamıyorsunuz. İşin bu kısmında size destek olacak şey devasa bir hoparlör yahut her yerde yanıp sönen neon ışıklar değil. Sizin kelimeleriniz. O kelimeler ki sizi onlara yaklaştıracak, sizin fikrinizi onlara taşıyacak, sizin derdinizle dertlenmelerini sağlayacak. İşte bunun için en temelde yazacağınız eser ne olursa olsun sağlam bir zemine bağlamalı ve o zeminin üzerinde dimdik durabilmelidir.</p>
@@ -276,7 +284,7 @@
         <p style="margin-top:1rem; font-style:italic; border-top:1px dashed #C5A059; padding-top:1rem;">📌 Atölyelerimiz her seviyeden yazara açıktır.</p>
     `;
 
-    // MAKALELER (tam metin)
+    // MAKALELER
     const makalelerHTML = `
         <h2>Makaleler</h2>
         <article>
@@ -290,7 +298,7 @@
         </article>
     `;
 
-    // MAĞAZA (düzeltilmiş cümle)
+    // MAĞAZA
     const magazaHTML = `
         <h2>Mağaza</h2>
         <p>Yakında dijital yazı atölyeleri, rehber kitaplar ve yaratıcı yazı defterleri burada olacak.</p>
@@ -299,7 +307,7 @@
         </div>
     `;
 
-    // İLETİŞİM (sadece mail)
+    // İLETİŞİM
     const iletisimHTML = `
         <h2>İletişim</h2>
         <div class="contact-info">
