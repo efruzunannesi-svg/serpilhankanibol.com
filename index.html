@@ -2,841 +2,134 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SERPİLHAN KANIBOL</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-  <link rel="icon" type="image/png" href="favicon.png?v=2026">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* GENEL TASARIM */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #2d0a3d; font-family: 'Segoe UI', Tahoma, sans-serif; color: #2d0a3d; line-height: 1.7; padding: 1.5rem 1rem; }
+    
+    .main-container { max-width: 1000px; margin: 0 auto; background-color: #F5F5DC; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); overflow: hidden; }
 
-    body {
-      background-color: #2d0a3d;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 1.5rem 1rem;
-    }
+    /* HEADER & LOGO */
+    .site-header { background-color: #2d0a3d; padding: 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #ffc200; }
+    .site-title { color: #F5F5DC; font-size: 2.2rem; font-weight: 700; font-family: 'Times New Roman', serif; letter-spacing: 1px; }
+    .logo-img { width: 110px; height: 110px; border-radius: 10px; background: #F5F5DC; padding: 5px; border: 2px solid #ffc200; object-fit: cover; }
 
-    .main-container {
-      max-width: 1100px;
-      width: 100%;
-      background-color: #F5F5DC;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
+    /* NAVİGASYON */
+    .nav-bar { background: #fff; display: flex; justify-content: center; gap: 10px; padding: 1rem; border-bottom: 2px solid #008080; flex-wrap: wrap; }
+    .nav-btn { background: #2d0a3d; color: #F5F5DC; border: 2px solid #ffc200; padding: 0.6rem 1.2rem; border-radius: 25px; cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+    .nav-btn:hover { background: #008080; border-color: #F5F5DC; }
 
-    .site-header {
-      background-color: #2d0a3d;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-bottom: 3px solid #ffc200;
-    }
+    /* İÇERİK */
+    .content-section { padding: 2.5rem; display: none; min-height: 450px; }
+    .content-section.active { display: block; animation: fadeIn 0.5s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .site-title {
-      color: #F5F5DC;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      cursor: pointer;
-      user-select: none;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      font-family: 'Times New Roman', serif;
-    }
+    h2 { color: #2d0a3d; border-left: 6px solid #008080; padding-left: 15px; margin-bottom: 1.5rem; font-size: 1.8rem; }
+    h3 { color: #008080; margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; text-align: justify; }
 
-    .logo-img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 12px;
-      background-color: #F5F5DC;
-      padding: 8px;
-      border: 3px solid #ffc200;
-    }
+    /* AKORDİYON TASARIMI */
+    details { background: #fff; border: 2px solid #008080; border-radius: 12px; margin-bottom: 1rem; padding: 1rem; transition: 0.3s; }
+    details[open] { border-color: #ffc200; }
+    summary { font-weight: bold; font-size: 1.1rem; cursor: pointer; outline: none; display: flex; align-items: center; }
+    summary::before { content: "◈ "; color: #008080; margin-right: 10px; }
+    .details-body { padding-top: 1rem; border-top: 1px solid #eee; margin-top: 0.5rem; }
 
-    .nav-bar {
-      background-color: #F5F5DC;
-      padding: 1rem 1rem;
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.5rem;
-      border-bottom: 2px solid #008080;
-      justify-content: center;
-      overflow-x: auto;
-    }
-
-    .nav-btn {
-      background-color: #2d0a3d;
-      color: #F5F5DC;
-      border: 2px solid #ffc200;
-      padding: 0.7rem 1rem;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.25s;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .nav-btn:hover {
-      background-color: #008080;
-      color: #F5F5DC;
-      border-color: #F5F5DC;
-      transform: translateY(-2px);
-    }
-
-    .nav-btn.active {
-      background-color: #ffc200;
-      color: #2d0a3d;
-      border: 2px solid #2d0a3d;
-      font-weight: bold;
-    }
-
-    .content {
-      padding: 2rem;
-      background-color: #F5F5DC;
-      color: #2d0a3d;
-      min-height: 500px;
-      line-height: 1.7;
-    }
-
-    .content h2, .content h3, .content h4 {
-      border-left: 4px solid #008080;
-      padding-left: 1rem;
-      margin: 1.5rem 0 1rem;
-      color: #2d0a3d;
-    }
-
-    details {
-      background-color: #ffffff;
-      border: 2px solid #008080;
-      border-radius: 12px;
-      margin: 1rem 0;
-      padding: 0.8rem 1.2rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    }
-
-    details summary {
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #2d0a3d;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-    }
-
-    details summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details summary::before {
-      content: "📁 ";
-      margin-right: 0.5rem;
-      font-size: 1.3rem;
-    }
-
-    details[open] summary::before {
-      content: "📂 ";
-    }
-
-    .sub-details {
-      background-color: #f0f0e0;
-      border-left: 4px solid #ffc200;
-      margin: 0.8rem 0;
-      border: 1px solid #008080;
-    }
-
-    .sub-details summary {
-      font-size: 1rem;
-      color: #2d0a3d;
-    }
-
-    .delete-item-btn {
-      background-color: #2d0a3d;
-      color: #F5F5DC;
-      border: 1px solid #ffc200;
-      border-radius: 20px;
-      padding: 0.3rem 1rem;
-      margin-left: 1rem;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.2s;
-    }
-
-    .delete-item-btn:hover {
-      background-color: #008080;
-    }
-
-    .admin-controls {
-      background: #2d0a3d;
-      color: #F5F5DC;
-      padding: 1rem;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      align-items: center;
-    }
-
-    .admin-btn {
-      background-color: #ffc200;
-      color: #2d0a3d;
-      border: none;
-      padding: 0.5rem 1.1rem;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .admin-btn:hover {
-      background-color: #008080;
-      color: #F5F5DC;
-    }
-
-    .add-item-btn {
-      background-color: #008080;
-      color: #F5F5DC;
-      border: 1px solid #ffc200;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      margin: 0.5rem 0;
-      font-weight: bold;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-content {
-      background: #F5F5DC;
-      padding: 1.5rem;
-      border-radius: 16px;
-      max-width: 900px;
-      width: 95%;
-      max-height: 85vh;
-      overflow-y: auto;
-      border: 3px solid #ffc200;
-    }
-
-    .editor-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-bottom: 0.8rem;
-      align-items: center;
-    }
-
-    .editor-toolbar button,
-    .editor-toolbar select,
-    .editor-toolbar input {
-      margin: 0.15rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
-      border: 1px solid #008080;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-
-    .editor-toolbar button {
-      background: #2d0a3d;
-      color: #F5F5DC;
-    }
-
-    .editor-toolbar button:hover {
-      background: #008080;
-    }
-
-    @media (max-width: 768px) {
-      .site-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 1rem;
-      }
-
-      .site-title {
-        font-size: 1.5rem;
-      }
-
-      .logo-img {
-        width: 110px;
-        height: 110px;
-      }
-
-      .nav-bar {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        justify-content: flex-start;
-        padding: 0.8rem 0.5rem;
-        gap: 0.4rem;
-      }
-
-      .nav-btn {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.75rem;
-        flex-shrink: 0;
-      }
-
-      .content {
-        padding: 1.2rem;
-      }
-
-      .modal-content {
-        width: 98%;
-        padding: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 0.5rem 0.3rem;
-      }
-
-      .site-title {
-        font-size: 1.3rem;
-      }
-
-      .logo-img {
-        width: 90px;
-        height: 90px;
-      }
-
-      .nav-btn {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.7rem;
-        border-radius: 20px;
-      }
+    /* MOBİL UYUMLULUK */
+    @media (max-width: 600px) {
+      .site-header { flex-direction: column; text-align: center; gap: 1rem; }
+      .content-section { padding: 1.5rem; }
+      .nav-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <header class="site-header">
-      <div class="site-title" id="siteNameClickArea">SERPİLHAN KANIBOL</div>
-      <div class="logo-area">
-        <img id="siteLogo" class="logo-img"
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232d0a3d'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='%23ffc200' font-family='Arial' font-weight='bold'%3ESK%3C/text%3E%3C/svg%3E"
-        alt="Logo">
+
+<div class="main-container">
+  <header class="site-header">
+    <div class="site-title">SERPİLHAN KANIBOL</div>
+    <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/110?text=SK'">
+  </header>
+
+  <nav class="nav-bar">
+    <a href="#" class="nav-btn" onclick="showSection('anasayfa')">ANA SAYFA</a>
+    <a href="#" class="nav-btn" onclick="showSection('atolye')">YAZIM ATÖLYESİ</a>
+    <a href="#" class="nav-btn" onclick="showSection('makaleler')">MAKALELER</a>
+    <a href="#" class="nav-btn" onclick="showSection('iletisim')">İLETİŞİM</a>
+  </nav>
+
+  <!-- ANA SAYFA -->
+  <section id="anasayfa" class="content-section active">
+    <h2>Serpilhan Kanıbol Kimdir?</h2>
+    <p>Serpilhan Kanıbol pek çok alanda yazım çalışmaları yapmış, yazım atölyesi eğitimleri vermiş, yazı dilinde pek çok şeyin çözülebileceğine inanan o kişidir[cite: 4].</p>
+    <p>İnsan hayata çevresiyle başlar. Çevresiyle şekillenir. İnsan bir nevi çevresinin eseridir. Ama insan kendini tanımaya kelimelerle başlar. En çok ihtiyacı olan kelimeleri söyler ilkin[cite: 4].</p>
+    <p>Serpilhan KANIBOL yazının gücünü insanın en üstün güçlerinden biri olarak görür. Yazmak en iyi terapi yöntemlerinden biridir. Birçok sanat dalının aksine yazı için tek materyal sizsiniz[cite: 4].</p>
+  </section>
+
+  <!-- YAZIM ATÖLYESİ -->
+  <section id="atolye" class="content-section">
+    <h2>Yazım Atölyesi</h2>
+    <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir[cite: 4].</p>
+    
+    <details>
+      <summary>TİYATRO</summary>
+      <div class="details-body">
+        <p>Tiyatro, sinema ve televizyon projeleri için metin temeldir. Yazara güvenmek ister. Yazar yazdığının arkasında duracak kadar sağlam bir kalem taşımalıdır[cite: 4].</p>
+        <p>Yazım atölyemizde tiyatro metinleri yazmak, yazılı eserleri oyunlaştırmak için aşamalı bir eğitim sunuyoruz[cite: 4].</p>
       </div>
-    </header>
+    </details>
 
-    <nav class="nav-bar" id="navBar">
-      <button class="nav-btn active" data-page="anasayfa">ANA SAYFA</button>
-      <button class="nav-btn" data-page="yazimatolyesi">YAZIM ATÖLYESİ</button>
-      <button class="nav-btn" data-page="makaleler">MAKALELER</button>
-      <button class="nav-btn" data-page="magza">MAĞAZA</button>
-      <button class="nav-btn" data-page="iletisim">İLETİŞİM</button>
-    </nav>
-
-    <main id="contentArea" class="content"></main>
-  </div>
-
-  <div id="editorModal" class="modal">
-    <div class="modal-content">
-      <div class="editor-toolbar" id="editorToolbar">
-        <button data-cmd="undo" title="Geri Al">↩</button>
-        <button data-cmd="redo" title="İleri Al">↪</button>
-        <select id="fontNameSelect">
-          <option value="Arial">Arial</option>
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Courier New">Courier New</option>
-          <option value="Georgia">Georgia</option>
-        </select>
-        <select id="fontSizeSelect">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3" selected>3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-        </select>
-        <button data-cmd="bold" title="Kalın"><b>B</b></button>
-        <button data-cmd="italic" title="İtalik"><i>I</i></button>
-        <button data-cmd="underline" title="Altı Çizili"><u>U</u></button>
-        <button data-cmd="strikeThrough" title="Üstü Çizili"><s>S</s></button>
-        <button data-cmd="justifyLeft" title="Sola Hizala">⫷</button>
-        <button data-cmd="justifyCenter" title="Ortala">⬤</button>
-        <button data-cmd="justifyRight" title="Sağa Hizala">⫸</button>
-        <button data-cmd="insertUnorderedList" title="Sırasız Liste">•</button>
-        <button data-cmd="insertOrderedList" title="Sıralı Liste">1.</button>
-        <button data-cmd="createLink" title="Link Ekle">🔗</button>
-        <button data-cmd="unlink" title="Link Kaldır">⛓️</button>
-        <button data-cmd="insertHorizontalRule" title="Yatay Çizgi">—</button>
-        <button data-cmd="formatBlock" data-arg="blockquote" title="Alıntı">❝</button>
-        <select id="headingSelect">
-          <option value="">Paragraf</option>
-          <option value="h2">H2</option>
-          <option value="h3">H3</option>
-          <option value="pre">Pre</option>
-        </select>
-        <input type="color" id="foreColor" title="Yazı Rengi" value="#2d0a3d">
-        <input type="color" id="hiliteColor" title="Arkaplan Rengi" value="#ffc200">
-        <button data-cmd="removeFormat" title="Biçim Temizle">🧹</button>
+    <details>
+      <summary>SİNEMA</summary>
+      <div class="details-body">
+        <p>Beyaz Perde. 1900lerin icadı ve geleceğin mimarı o muhteşem sanat. Tüm yazım kurallarından ayrı bu büyülü dünyanın tercümanı olmak senaristin eseridir[cite: 4].</p>
+        <p>Bu atölye size bir filmi herkesen önce izleme imkanı sunar. Oyuncu oynamadan, yönetmen çekmeden siz jeneriğine kadar izlersiniz[cite: 4].</p>
       </div>
-      <div id="editorContent" contenteditable="true"
-      style="border:2px solid #008080; min-height:250px; padding:1rem; background:white; margin:1rem 0; border-radius:8px;"></div>
-      <button id="saveEditorBtn" class="admin-btn"> Kaydet</button>
-      <button id="closeEditorBtn" class="admin-btn" style="background:#2d0a3d;color:#F5F5DC;">✖ Kapat</button>
+    </details>
+
+    <details>
+      <summary>EDEBİYAT</summary>
+      <div class="details-body">
+        <p>Edebi eser yazmak kişisel yetenek ve yeterlilik ister. Bu atölyemizde öncelikle yeteneği anlama, sınırlarını zorlama ve kalıpların içinde kendini bulma çalışmaları yapıyoruz[cite: 4].</p>
+        <p>Deneme, Hikaye, Roman ve Makale türlerinde eserler çıkarmak için birlikte yürüyoruz[cite: 4].</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- MAKALELER -->
+  <section id="makaleler" class="content-section">
+    <h2>Makaleler</h2>
+    <div style="background: #fff; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #ffc200;">
+      <h3>İÇİMDE BİR DENİZ VAR, KÖPÜRÜP DURUYOR</h3>
+      <p>Çocuklarımızla iletişim kurmak her geçen gün daha karmaşık bir hal alıyor. Çocukların fevri davranışlarını ebeveynler olarak anlamlandıramıyoruz[cite: 4].</p>
+      <p>Çocuğun ağzından dökülmeyen şu cümleye kulak vereceğiz: “İçimde bir deniz var. Köpürüp duruyor.” Ona boş bir kağıt verelim. O denizi bir okyanusa akıtsın. Kelimelerin okyanusuna[cite: 4].</p>
     </div>
-  </div>
+  </section>
 
-  <script>
-    (function() {
-      // ============ BASİT ŞİFRE SİSTEMİ (HASH YOK) ============
-      var ADMIN_PASSWORD = 'admin123';
-      
-      // Kayıtlı şifre varsa onu kullan
-      var savedPass = localStorage.getItem('admin_password');
-      if (savedPass) {
-        ADMIN_PASSWORD = savedPass;
-      } else {
-        localStorage.setItem('admin_password', ADMIN_PASSWORD);
-      }
+  <!-- İLETİŞİM -->
+  <section id="iletisim" class="content-section">
+    <h2>İletişim</h2>
+    <p>Eğitimler, atölye çalışmaları ve projeler hakkında bilgi almak için iletişime geçebilirsiniz.</p>
+    <p><strong>E-posta:</strong> info@serpilhankanibol.com</p>
+    <p><strong>Sosyal Medya:</strong> @serpilhankanibol</p>
+  </section>
+</div>
 
-      // ============ Anti-tamper adminMode ============
-      var _adminMode = false;
-      Object.defineProperty(window, 'adminMode', {
-        get: function() { return _adminMode; },
-        set: function(value) {
-          throw new Error('adminMode değiştirilemez!');
-        }
-      });
-
-      // ============ Varsayılan veri ============
-      var DEFAULT_SITE_DATA = {
-        anasayfa: "<h2>Hoş Geldiniz</h2><p>Serpilhan Kanıbol'un kişisel alanına hoş geldiniz.</p>",
-        yazimatolyesi: "",
-        makaleler: "<h2>Makaleler</h2><p>Henüz içerik eklenmedi.</p>",
-        magza: "<h2>Mağaza</h2><p>Ürünler yakında burada olacak.</p>",
-        iletisim: "<h2>İletişim</h2><p>Bana ulaşmak için: <strong>info@serpilhank.com</strong></p>",
-        activePage: "anasayfa"
-      };
-
-      var DEFAULT_DRAMA_DATA = {
-        sectionTitles: {
-          pageTexts: "Tiyatro",
-          articles: "Sinema",
-          instaVideos: "Edebiyat"
-        },
-        pageTexts: [],
-        articles: [],
-        instaVideos: []
-      };
-
-      // ============ localStorage ============
-      function loadOrInit(key, defaultData) {
-        var stored = localStorage.getItem(key);
-        if (stored) {
-          try {
-            return JSON.parse(stored);
-          } catch (e) {
-            return defaultData;
-          }
-        }
-        return defaultData;
-      }
-
-      function saveData(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-      }
-
-      var siteData = loadOrInit('site_data', DEFAULT_SITE_DATA);
-      var dramaData = loadOrInit('yazim_atolyesi_data', DEFAULT_DRAMA_DATA);
-
-      // ============ DOM ============
-      var contentArea = document.getElementById('contentArea');
-      var navButtons = document.querySelectorAll('.nav-btn');
-      var siteTitle = document.getElementById('siteNameClickArea');
-      var logoImg = document.getElementById('siteLogo');
-      var editorModal = document.getElementById('editorModal');
-      var editorContent = document.getElementById('editorContent');
-      var currentEditTarget = null;
-
-      // Logo yükleme
-      // Logo yükleme
-var savedLogo = localStorage.getItem('site_logo');
-if (savedLogo) {
-    logoImg.src = savedLogo;
-} else {
-    logoImg.src = "logo.png"; // Hafıza boşsa klasördeki png dosyasını kullan
-}
-      // ============ Render ============
-      function renderPage(page) {
-        if (!contentArea) return;
-        siteData.activePage = page;
-        saveData('site_data', siteData);
-
-        navButtons.forEach(function(btn) {
-          btn.classList.remove('active');
-          if (btn.dataset.page === page) btn.classList.add('active');
-        });
-
-        if (page === 'yazimatolyesi') {
-          renderYazimAtolyesi();
-        } else {
-          contentArea.innerHTML = siteData[page] || '';
-          if (_adminMode) injectAdminPageControls();
-        }
-      }
-
-      function renderYazimAtolyesi() {
-        var html = '<h2>Yazım Atölyesi</h2>';
-
-        // Tiyatro (pageTexts)
-        html += '<details><summary>' + (dramaData.sectionTitles.pageTexts || 'Tiyatro') +
-          '</summary><div style="padding:0.5rem;">';
-        if (dramaData.pageTexts.length === 0) html += '<p><em>Henüz içerik yok.</em></p>';
-        dramaData.pageTexts.forEach(function(text, idx) {
-          html += '<div style="margin:0.5rem 0;padding:0.5rem;background:#fafaf0;border-radius:6px;">' + text +
-            (_adminMode ? '<button class="delete-item-btn" data-type="pageTexts" data-index="' + idx +
-              '">Sil</button>' : '') + '</div>';
-        });
-        if (_adminMode) html += '<button class="add-item-btn" data-type="pageTexts">+ Yeni İçerik Ekle</button>';
-        html += '</div></details>';
-
-        // Sinema (articles)
-        html += '<details><summary>' + (dramaData.sectionTitles.articles || 'Sinema') +
-          '</summary><div style="padding:0.5rem;">';
-        if (dramaData.articles.length === 0) html += '<p><em>Henüz içerik yok.</em></p>';
-        dramaData.articles.forEach(function(article, idx) {
-          html += '<details class="sub-details"><summary>📄 ' + article.title + '</summary><div style="padding:0.5rem;">' +
-            article.content + '</div>' + (_adminMode ? '<button class="delete-item-btn" data-type="articles" data-index="' +
-              idx + '">Sil</button>' : '') + '</details>';
-        });
-        if (_adminMode) html += '<button class="add-item-btn" data-type="articles">+ Yeni İçerik Ekle</button>';
-        html += '</div></details>';
-
-        // Edebiyat (instaVideos)
-        html += '<details><summary>' + (dramaData.sectionTitles.instaVideos || 'Edebiyat') +
-          '</summary><div style="padding:0.5rem;">';
-        if (dramaData.instaVideos.length === 0) html += '<p><em>Henüz içerik yok.</em></p>';
-        dramaData.instaVideos.forEach(function(vid, idx) {
-          html += '<div style="margin:0.5rem 0;padding:0.5rem;background:#fafaf0;border-radius:6px;">🎬 <a href="' + vid.url +
-            '" target="_blank" style="color:#008080;">' + vid.title + '</a> ' + (_adminMode ?
-              '<button class="delete-item-btn" data-type="instaVideos" data-index="' + idx + '">Sil</button>' : '') +
-            '</div>';
-        });
-        if (_adminMode) html += '<button class="add-item-btn" data-type="instaVideos">+ Yeni İçerik Ekle</button>';
-        html += '</div></details>';
-
-        if (_adminMode) {
-          html += '<div class="admin-controls">';
-          html += '<button class="admin-btn" id="editSectionTitlesBtn">✏️ Akordiyon Başlıklarını Düzenle</button>';
-          html += '<button class="admin-btn" id="changeLogoBtnY">🖼 Logo Değiştir</button>';
-          html += '<button class="admin-btn" id="changePasswordBtnY">🔑 Şifre Değiştir</button>';
-          html += '</div>';
-        }
-
-        contentArea.innerHTML = html;
-        bindYazimAtolyesiEvents();
-      }
-
-      function bindYazimAtolyesiEvents() {
-        if (!_adminMode) return;
-
-        document.querySelectorAll('.delete-item-btn').forEach(function(btn) {
-          btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var type = this.dataset.type;
-            var index = parseInt(this.dataset.index);
-            if (confirm('Bu öğeyi silmek istediğinize emin misiniz?')) {
-              dramaData[type].splice(index, 1);
-              saveData('yazim_atolyesi_data', dramaData);
-              renderPage('yazimatolyesi');
-            }
-          });
-        });
-
-        document.querySelectorAll('.add-item-btn').forEach(function(btn) {
-          btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var type = this.dataset.type;
-            if (type === 'pageTexts') {
-              var text = prompt('Tiyatro içeriği girin (HTML kullanabilirsiniz):');
-              if (text && text.trim()) {
-                dramaData.pageTexts.push(text);
-                saveData('yazim_atolyesi_data', dramaData);
-                renderPage('yazimatolyesi');
-              }
-            } else if (type === 'articles') {
-              var title = prompt('Sinema başlığı:');
-              if (title && title.trim()) {
-                var content = prompt('Sinema içeriği (HTML kullanabilirsiniz):', '');
-                dramaData.articles.push({ title: title.trim(), content: content || '' });
-                saveData('yazim_atolyesi_data', dramaData);
-                renderPage('yazimatolyesi');
-              }
-            } else if (type === 'instaVideos') {
-              var vtitle = prompt('Edebiyat başlığı:');
-              if (vtitle && vtitle.trim()) {
-                var url = prompt('Link veya URL:', 'https://');
-                dramaData.instaVideos.push({ title: vtitle.trim(), url: url || '#' });
-                saveData('yazim_atolyesi_data', dramaData);
-                renderPage('yazimatolyesi');
-              }
-            }
-          });
-        });
-
-        var editTitlesBtn = document.getElementById('editSectionTitlesBtn');
-        if (editTitlesBtn) {
-          editTitlesBtn.addEventListener('click', function() {
-            var newPageTexts = prompt('1. Akordiyon başlığı (Tiyatro):', dramaData.sectionTitles.pageTexts);
-            if (newPageTexts !== null) dramaData.sectionTitles.pageTexts = newPageTexts.trim() || 'Tiyatro';
-            var newArticles = prompt('2. Akordiyon başlığı (Sinema):', dramaData.sectionTitles.articles);
-            if (newArticles !== null) dramaData.sectionTitles.articles = newArticles.trim() || 'Sinema';
-            var newVideos = prompt('3. Akordiyon başlığı (Edebiyat):', dramaData.sectionTitles.instaVideos);
-            if (newVideos !== null) dramaData.sectionTitles.instaVideos = newVideos.trim() || 'Edebiyat';
-            saveData('yazim_atolyesi_data', dramaData);
-            renderPage('yazimatolyesi');
-          });
-        }
-
-        var logoBtn = document.getElementById('changeLogoBtnY');
-        if (logoBtn) logoBtn.addEventListener('click', changeLogo);
-
-        var passBtn = document.getElementById('changePasswordBtnY');
-        if (passBtn) passBtn.addEventListener('click', changePassword);
-      }
-
-      function injectAdminPageControls() {
-        var existing = document.getElementById('adminPageControls');
-        if (existing) existing.remove();
-
-        var controls = document.createElement('div');
-        controls.id = 'adminPageControls';
-        controls.className = 'admin-controls';
-        controls.innerHTML =
-          '<button class="admin-btn" id="editPageContentBtn">📝 Sayfa İçeriğini Düzenle</button>' +
-          '<button class="admin-btn" id="changeLogoBtn">🖼 Logo Değiştir</button>' +
-          '<button class="admin-btn" id="resetLogoBtn">↺ Logo Sıfırla</button>' +
-          '<button class="admin-btn" id="changePasswordBtn">🔑 Şifre Değiştir</button>' +
-          '<button class="admin-btn" id="resetPageBtn">🗑 Sayfayı Sıfırla</button>';
-        contentArea.appendChild(controls);
-
-        document.getElementById('editPageContentBtn').addEventListener('click', openEditorForCurrentPage);
-        document.getElementById('changeLogoBtn').addEventListener('click', changeLogo);
-        document.getElementById('resetLogoBtn').addEventListener('click', resetLogo);
-        document.getElementById('changePasswordBtn').addEventListener('click', changePassword);
-        document.getElementById('resetPageBtn').addEventListener('click', resetCurrentPage);
-      }
-
-      function changeLogo() {
-        var input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = function(e) {
-          var file = e.target.files[0];
-          if (!file) return;
-          var reader = new FileReader();
-          reader.onload = function() {
-            localStorage.setItem('site_logo', reader.result);
-            logoImg.src = reader.result;
-          };
-          reader.readAsDataURL(file);
-        };
-        input.click();
-      }
-
-      function resetLogo() {
-        localStorage.removeItem('site_logo');
-        logoImg.src =
-          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232d0a3d'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='%23ffc200' font-family='Arial' font-weight='bold'%3ESK%3C/text%3E%3C/svg%3E";
-      }
-
-      function changePassword() {
-        var oldPass = prompt('Mevcut şifreyi girin:');
-        if (!oldPass) return;
-        if (oldPass !== ADMIN_PASSWORD) {
-          alert('❌ Şifre yanlış!');
-          return;
-        }
-        var newPass = prompt('Yeni şifreyi girin:');
-        if (newPass && newPass.trim()) {
-          ADMIN_PASSWORD = newPass.trim();
-          localStorage.setItem('admin_password', ADMIN_PASSWORD);
-          alert('✅ Şifre başarıyla değiştirildi: ' + ADMIN_PASSWORD);
-        }
-      }
-
-      function resetCurrentPage() {
-        if (siteData.activePage === 'yazimatolyesi') {
-          if (confirm('Yazım Atölyesi\'ndeki tüm veriler silinecek. Emin misiniz?')) {
-            dramaData = {
-              sectionTitles: { pageTexts: 'Tiyatro', articles: 'Sinema', instaVideos: 'Edebiyat' },
-              pageTexts: [],
-              articles: [],
-              instaVideos: []
-            };
-            saveData('yazim_atolyesi_data', dramaData);
-            renderPage('yazimatolyesi');
-          }
-        } else {
-          if (confirm('Bu sayfanın içeriği tamamen silinecek. Emin misiniz?')) {
-            siteData[siteData.activePage] = '';
-            saveData('site_data', siteData);
-            renderPage(siteData.activePage);
-          }
-        }
-      }
-
-      function openEditorForCurrentPage() {
-        if (siteData.activePage === 'yazimatolyesi') {
-          alert('Yazım Atölyesi modüler yapıdadır. Lütfen ekle/sil butonlarını kullanın.');
-          return;
-        }
-        currentEditTarget = siteData.activePage;
-        editorContent.innerHTML = siteData[currentEditTarget] || '';
-        editorModal.style.display = 'flex';
-      }
-
-      // ============ Navigasyon ============
-      navButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          renderPage(this.dataset.page);
-        });
-      });
-
-     // --- YENİ RİTMİK ŞİFRE MEKANİZMASI (5K + 1U + 2K) ---
-let rhythmPattern = ""; 
-let pressStartTime = 0;
-let rhythmTimer;
-
-siteTitle.addEventListener('mousedown', function() {
-    pressStartTime = Date.now();
-    clearTimeout(rhythmTimer);
-});
-
-siteTitle.addEventListener('mouseup', function() {
-    const pressDuration = Date.now() - pressStartTime;
-    const type = (pressDuration > 1000) ? "U" : "K"; 
+<script>
+  function showSection(sectionId) {
+    // Tüm bölümleri gizle
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    // Seçilen bölümü göster
+    document.getElementById(sectionId).classList.add('active');
     
-    rhythmPattern += type;
-    
-    if (rhythmPattern === "KKKKKUKK") {
-        var password = prompt('🔐 Yönetici şifresini girin:');
-        if (!password) return;
+    // Sayfanın başına kaydır
+    window.scrollTo(0, 0);
+  }
+</script>
 
-        if (password === ADMIN_PASSWORD) {
-            _adminMode = true;
-            alert('✅ Admin modu aktif!');
-            renderPage(siteData.activePage);
-        } else {
-            _adminMode = false;
-            alert('❌ Şifre yanlış!');
-        }
-        rhythmPattern = ""; 
-    }
-
-    rhythmTimer = setTimeout(() => {
-        rhythmPattern = "";
-    }, 2000);
-});
-
-// Mobil uyumluluk için ekleme
-siteTitle.addEventListener('touchstart', function(e) { 
-    pressStartTime = Date.now(); 
-    clearTimeout(rhythmTimer); 
-});
-siteTitle.addEventListener('touchend', function(e) { 
-    siteTitle.dispatchEvent(new Event('mouseup')); 
-});
-      // ============ Editör modal ============
-      document.getElementById('closeEditorBtn').addEventListener('click', function() {
-        editorModal.style.display = 'none';
-      });
-
-      document.getElementById('saveEditorBtn').addEventListener('click', function() {
-        if (currentEditTarget) {
-          siteData[currentEditTarget] = editorContent.innerHTML;
-          saveData('site_data', siteData);
-          renderPage(currentEditTarget);
-          alert('✅ İçerik kaydedildi.');
-        }
-        editorModal.style.display = 'none';
-      });
-
-      document.querySelectorAll('#editorToolbar button[data-cmd]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var cmd = this.dataset.cmd;
-          var arg = this.dataset.arg || null;
-          if (cmd === 'createLink') {
-            var url = prompt('Link URL:', 'https://');
-            if (url) document.execCommand(cmd, false, url);
-          } else if (cmd === 'formatBlock' && arg) {
-            document.execCommand(cmd, false, arg);
-          } else if (cmd) {
-            document.execCommand(cmd, false, null);
-          }
-        });
-      });
-
-      document.getElementById('fontNameSelect').addEventListener('change', function() {
-        document.execCommand('fontName', false, this.value);
-      });
-      document.getElementById('fontSizeSelect').addEventListener('change', function() {
-        document.execCommand('fontSize', false, this.value);
-      });
-      document.getElementById('headingSelect').addEventListener('change', function() {
-        document.execCommand('formatBlock', false, this.value);
-      });
-      document.getElementById('foreColor').addEventListener('input', function() {
-        document.execCommand('foreColor', false, this.value);
-      });
-      document.getElementById('hiliteColor').addEventListener('input', function() {
-        document.execCommand('hiliteColor', false, this.value);
-      });
-
-      editorModal.addEventListener('click', function(e) {
-        if (e.target === editorModal) {
-          editorModal.style.display = 'none';
-        }
-      });
-
-      // ============ Başlangıç ============
-      console.log('✅ Site hazır!');
-      console.log('📌 Admin şifresi: ' + ADMIN_PASSWORD);
-      console.log('📌 Giriş için "SERPİLHAN KANIBOL" yazısına 5 kez tıklayın');
-      console.log('📌 Şifreyi değiştirmek için admin panelinden "Şifre Değiştir" butonunu kullanın');
-      renderPage(siteData.activePage || 'anasayfa');
-
-    })();
-  </script>
 </body>
 </html>
