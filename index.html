@@ -6,7 +6,11 @@
     <title>Serpilhan Kanıbol | Yazı Terapisi</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             background-color: #1A237E;
             font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
@@ -22,7 +26,7 @@
             background-color: #F5F5DC;
             border-radius: 2rem;
             overflow: hidden;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
         }
@@ -43,117 +47,159 @@
             font-family: 'Times New Roman', serif;
             letter-spacing: 1px;
             text-shadow: 2px 2px 0 #1A237E;
+            cursor: default;
         }
+        /* LOGO - tamamen kareyi dolduruyor, hiç boşluk yok */
         .logo-area {
-            width: 100px; height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
             background-color: #F5F5DC;
-            display: flex; align-items: center; justify-content: center;
         }
         .logo-area img {
-            width: 100%; height: 100%;
-            object-fit: cover; display: block;
-        }
-
-        /* SLIDER */
-        .slider-box {
-            position: relative; width: 100%; height: 400px;
-            overflow: hidden; background: #2d0a3d;
-            border-bottom: 2px solid #C5A059;
-        }
-        .slider-track {
-            display: flex; height: 100%;
-            transition: transform 0.5s ease;
-        }
-        .slider-track img {
-            min-width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            display: block;
         }
-        .slider-arrow {
-            position: absolute; top: 50%;
-            transform: translateY(-50%);
-            background: rgba(20,10,30,0.6); color: #F5F5DC;
-            border: 1px solid #C5A059;
-            font-size: 22px; cursor: pointer;
-            padding: 12px 18px; border-radius: 50%;
-            z-index: 10; transition: 0.3s;
-        }
-        .slider-arrow:hover { background: #C5A059; color: #2d0a3d; }
-        .slider-arrow.left { left: 20px; }
-        .slider-arrow.right { right: 20px; }
-        .slider-dots {
-            position: absolute; bottom: 15px; width: 100%;
-            text-align: center; z-index: 10;
-        }
-        .slider-dots span {
-            display: inline-block; width: 10px; height: 10px;
-            margin: 0 5px; background: rgba(255,255,255,0.4);
-            border-radius: 50%; cursor: pointer;
-        }
-        .slider-dots span.active { background: #C5A059; }
-
         .nav-row {
             background-color: #F5F5DC;
-            padding: 0.9rem 1.5rem; display: flex;
-            flex-wrap: wrap; gap: 0.8rem;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
             justify-content: center;
             border-bottom: 2px solid #C5A059;
         }
         .nav-btn {
-            background-color: #2d0a3d; color: #F5F5DC;
+            background-color: #2d0a3d;
+            color: #F5F5DC;
+            border: none;
+            padding: 0.6rem 1.3rem;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
             border: 1px solid #C5A059;
-            padding: 0.6rem 1.3rem; border-radius: 40px;
-            font-weight: bold; font-size: 0.85rem;
-            letter-spacing: 1px; cursor: pointer;
-            transition: 0.2s; text-transform: uppercase;
+            text-transform: uppercase;
         }
-        .nav-btn:hover, .nav-btn.active {
-            background-color: #C5A059; color: #2d0a3d;
-            border-color: #2d0a3d; transform: translateY(-2px);
+        .nav-btn:hover {
+            background-color: #C5A059;
+            color: #2d0a3d;
+            border-color: #2d0a3d;
+            transform: translateY(-2px);
+        }
+        .nav-btn.active {
+            background-color: #C5A059;
+            color: #2d0a3d;
+            border: 1px solid #2d0a3d;
+            font-weight: bold;
         }
         .content-pane {
-            padding: 2rem; background-color: #F5F5DC;
-            color: #2d0a3d; line-height: 1.7; min-height: 65vh;
+            padding: 2rem 2rem 1.5rem 2rem;
+            background-color: #F5F5DC;
+            color: #2d0a3d;
+            line-height: 1.7;
+            min-height: 65vh;
         }
         .content-pane h2, .content-pane h3 {
             border-left: 5px solid #C5A059;
-            padding-left: 1rem; margin: 1.8rem 0 1rem 0;
-            font-family: 'Times New Roman', serif; font-weight: 700;
+            padding-left: 1rem;
+            margin: 1.8rem 0 1rem 0;
+            font-family: 'Times New Roman', serif;
+            font-weight: 700;
         }
-        .content-pane h2:first-of-type { margin-top: 0; }
-        .content-pane p { margin-bottom: 1rem; }
+        .content-pane h2:first-of-type {
+            margin-top: 0;
+        }
+        .content-pane p {
+            margin-bottom: 1rem;
+        }
         details {
-            background: #ffffffea; border: 1px solid #C5A059;
-            border-radius: 18px; margin: 1.2rem 0; padding: 0.5rem 0.8rem;
+            background: #ffffffea;
+            border: 1px solid #C5A059;
+            border-radius: 18px;
+            margin: 1.2rem 0;
+            padding: 0.5rem 0.8rem;
         }
         details summary {
-            font-weight: bold; font-size: 1.3rem; color: #2d0a3d;
-            cursor: pointer; list-style: none;
-            display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #2d0a3d;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
         }
-        details summary::before { content: "📖"; font-size: 1.4rem; }
-        details[open] summary::before { content: "📂"; }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::before {
+            content: "📖";
+            font-size: 1.4rem;
+        }
+        details[open] summary::before {
+            content: "📂";
+        }
         .signature-quote {
-            font-style: italic; border-left: 3px solid #C5A059;
-            padding-left: 1.2rem; margin: 1rem 0; color: #3c2a4d;
+            font-style: italic;
+            border-left: 3px solid #C5A059;
+            padding-left: 1.2rem;
+            margin: 1rem 0;
+            color: #3c2a4d;
         }
         .contact-info {
-            background: #2d0a3d10; padding: 1rem;
-            border-radius: 20px; margin-top: 1rem;
+            background: #2d0a3d10;
+            padding: 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
         }
         .site-footer {
-            background-color: #4a4a4a; color: #d4d4d4;
-            text-align: center; padding: 1rem; font-size: 0.8rem;
+            background-color: #4a4a4a;
+            color: #d4d4d4;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
             border-top: 2px solid #C5A059;
+            font-family: 'Segoe UI', monospace;
+            letter-spacing: 0.5px;
+        }
+        .site-footer span {
+            color: #c0c0c0;
         }
         @media (max-width: 700px) {
-            .site-header { flex-direction: column; text-align: center; padding: 1rem; }
-            .site-title { font-size: 1.5rem; }
-            .logo-area { width: 80px; height: 80px; }
-            .slider-box { height: 250px; }
-            .slider-arrow { padding: 8px 14px; font-size: 18px; }
-            .nav-row { gap: 0.5rem; padding: 0.8rem; }
-            .nav-btn { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
-            .content-pane { padding: 1.2rem; }
+            .site-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+            .site-title {
+                font-size: 1.5rem;
+            }
+            .logo-area {
+                width: 80px;
+                height: 80px;
+            }
+            .nav-row {
+                gap: 0.5rem;
+                padding: 0.8rem;
+            }
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+            .content-pane {
+                padding: 1.2rem;
+            }
+            details summary {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -162,18 +208,9 @@
     <div class="site-header">
         <div class="site-title">SERPİLHAN KANIBOL</div>
         <div class="logo-area">
-            <img src="favicon.png" alt="Logo" onerror="this.style.display='none'">
+            <img id="siteLogo" src="favicon.png" alt="Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%232d0a3d\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23C5A059\' font-family=\'Arial\' font-weight=\'bold\'%3ESK%3C/text%3E%3C/svg%3E'">
         </div>
     </div>
-
-    <!-- SLIDER -->
-    <div class="slider-box" id="heroSlider">
-        <div class="slider-track" id="heroTrack"></div>
-        <button class="slider-arrow left" id="heroPrev">❮</button>
-        <button class="slider-arrow right" id="heroNext">❯</button>
-        <div class="slider-dots" id="heroDots"></div>
-    </div>
-
     <div class="nav-row" id="navMenu">
         <button class="nav-btn active" data-page="anasayfa">ANA SAYFA</button>
         <button class="nav-btn" data-page="yazimatolyesi">YAZIM ATÖLYESİ</button>
@@ -188,16 +225,93 @@
 </div>
 
 <script>
-    // SAYFA İÇERİKLERİ
-    const anasayfaHTML = `<h2>Yazı Terapisi</h2><p style="font-size:1.2rem;"><em>Terapötik Yazma Eğitmeni</em></p><p style="font-size:1.3rem;color:#C5A059;">✨ Kelimelerle yeniden bağlan</p><h3>Serpilhan KANIBOL kimdir?</h3><p>Serpilhan Kanıbol pek çok alanda yazım çalışmaları yapmış, yazım atölyesi eğitimleri vermiş, yazı dilinde pek çok şeyin çözülebileceğine inanan o kişidir.</p><p><strong>Sosyal Hizmet Uzmanı</strong> kimliğiyle insanın iç dünyasını anlamayı, <strong>İletişim Fakültesi ve Radyo Sinema TV</strong> eğitimiyle de bu anladıklarını etkili bir anlatıma dönüştürmeyi öğrenmiştir.</p><p>İnsan hayata çevresiyle başlar. Çevresiyle şekillenir. İnsan bir nevi çevresinin eseridir. Ama insan kendini tanımaya kelimelerle başlar.</p><p>Serpilhan KANIBOL yazının gücünü insanın en üstün güçlerinden biri olarak görür. Yazmak en iyi terapi yöntemlerinden biridir.</p><div class="signature-quote">✍️ Ne yazmak istiyorsunuz?<br>📖 Nasıl yazmak istiyorsunuz?<br>🎯 Nasıl bir kitle için yazmak istiyorsunuz?</div>`;
+    // ANA SAYFA
+    const anasayfaHTML = `
+        <h2>Yazı Terapisi</h2>
+        <p style="font-size:1.2rem; font-weight:500; margin-top:-0.5rem;"><em>Terapötik Yazma Eğitmeni</em></p>
+        <p style="font-size:1.3rem; color:#C5A059; margin-bottom:1.5rem;">✨ Kelimelerle yeniden bağlan</p>
 
-    const yazimAtolyesiHTML = `<h2>Yazım Atölyesi</h2><p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur.</p><details><summary>TİYATRO</summary><p>Tiyatro, sinema ve televizyon projeleri için metin temeldir. Yazar yazdığının arkasında duracak kadar sağlam bir kalem taşımalıdır.</p></details><details><summary>SİNEMA</summary><p>Beyaz Perde. Senaristin zihninde oluşan o muhteşem sanat.</p></details><details><summary>EDEBİYAT</summary><p>Deneme · Hikâye · Roman · Makale türlerinde eserler çıkarmak için yolu birlikte yürüyoruz.</p></details>`;
+        <h3>Serpilhan KANIBOL kimdir?</h3>
+        <p>Serpilhan Kanıbol pek çok alanda yazım çalışmaları yapmış, yazım atölyesi eğitimleri vermiş, yazı dilinde pek çok şeyin çözülebileceğine inanan o kişidir.</p>
+        <p><strong>Sosyal Hizmet Uzmanı</strong> kimliğiyle insanın iç dünyasını anlamayı, <strong>İletişim Fakültesi ve Radyo Sinema TV</strong> eğitimiyle de bu anladıklarını etkili bir anlatıma dönüştürmeyi öğrenmiştir.</p>
+        <p>İnsan hayata çevresiyle başlar. Çevresiyle şekillenir. İnsan bir nevi çevresinin eseridir. Ama insan kendini tanımaya kelimelerle başlar. En çok ihtiyacı olan kelimeleri söyler ilkin. Mama der, ana der, baba der… Sonra o annenin, babanın kelimelerini katar kendine. Bu kendine katma süreci bir ömür sürer. Çevresinden alır, özünde eritir. Biz o insana bakınca o açıkça göstermedikçe özünü görmeyiz. Bize gelen onun kelimeleridir. Her yerde kelimeler uçuşur, herkes kendini ifade etme derdine düşer. Kimimiz kimseye güvenmediğimizi gizlediğimiz kelimelerle gösteririz, kimimiz de yaşam enerjimizi. İşte tam da bu noktada yazıyla buluşuruz.</p>
+        <p>Serpilhan KANIBOL yazının gücünü insanın en üstün güçlerinden biri olarak görür. Herkesin anlatacak bir şeyi olur, anlatmak istemediklerinin de anlaşılmasını ister. Ama söz uçup da yazı kaldığında, özün kelimeleri insanı anlatmaya başlar.</p>
+        <p>Yazmak en iyi terapi yöntemlerinden biridir. Birçok sanat dalının aksine yazı için tek materyal sizsiniz. Her yerde her zaman yazabilirsiniz. Ama kendinizi daha iyi ifade ettiğinizde bu size gerçek bir terapi hissiyatı verecektir.</p>
+        <p>Kendi kendinizi terapi edebilmek, yarına bugünden bir şeyler bırakabilmek için hazır mısınız?</p>
+        <p>Bu sayfada çeşitli yazı türlerinde eserler ortaya koyabilmek için rehber olmak istedik.</p>
+        <div class="signature-quote">
+            ✍️ Ne yazmak istiyorsunuz?<br>
+            📖 Nasıl yazmak istiyorsunuz?<br>
+            🎯 Nasıl bir kitle için yazmak istiyorsunuz?<br>
+            🎭 Nasıl daha etkili bir anlatım gerçekleştirebilirsiniz?<br>
+            💛 Yazmak size nasıl hissettirecek?
+        </div>
+        <p>Belki de birçok sorunuzun çözümü olacak bu yazma eylemi. <strong>Neden denemeyesiniz ki?</strong></p>
+    `;
 
-    const makalelerHTML = `<h2>Makaleler</h2><h3>İçimde Bir Deniz Var, Köpürüp Duruyor.</h3><p>Çocuklarımızla iletişim kurmak her geçen gün daha karmaşık bir hal alıyor.</p><p>Çocuğumuz içindeki denizin köpüklerinden endişeleniyorsa ona boş bir kâğıt verelim. Yazmayı öğütleyelim çocuklarımıza.</p>`;
+    // YAZIM ATÖLYESİ (eksiksiz)
+    const yazimAtolyesiHTML = `
+        <h2>Yazım Atölyesi</h2>
+        <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bu eğitimler her tür yazının temeli olan önerme ile başlar. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir. Bu sebep sizin derdinizdir. Dünyanın küresel sorunlarından tutun da saksınızda solan çiçeğe kadar her şey sizin derdiniz olabilir. Sizin dert edindiğinizin başka insanlarca bilinmesini istiyorsunuz ama onların dikkatini çekmenin yolunu bulamıyorsunuz. İşin bu kısmında size destek olacak şey devasa bir hoparlör yahut her yerde yanıp sönen neon ışıklar değil. Sizin kelimeleriniz. O kelimeler ki sizi onlara yaklaştıracak, sizin fikrinizi onlara taşıyacak, sizin derdinizle dertlenmelerini sağlayacak. İşte bunun için en temelde yazacağınız eser ne olursa olsun sağlam bir zemine bağlamalı ve o zeminin üzerinde dimdik durabilmelidir.</p>
+        <p>Sonraki aşama hangi türde eser vermek istediğinizdir.</p>
 
-    const magazaHTML = `<h2>Mağaza</h2><p>Yakında dijital yazı atölyeleri, rehber kitaplar ve yaratıcı yazı defterleri burada olacak.</p>`;
+        <details>
+            <summary>TİYATRO</summary>
+            <div style="margin-top:0.8rem;">
+                <p>Tiyatro, sinema ve televizyon projeleri için metin temeldir. Yani yazar yahut senarist bir şey yazmadıkça ne oyun çıkar ne de film çekilir. Oyuncu da yönetmen de yazarın bu önceliğini bilir. Yazara güvenmek ister. Yazar yazdığının arkasında duracak kadar sağlam bir kalem taşımalıdır. Biz de bu sebeple tiyatro ve sinemayı diğer yazı türlerinden bağımsız ele alırız. Bu eserlerde imkânlar yazara sınır koyarken yazar da nihai esere sınırlar koyabilen kişidir.</p>
+                <p>Yazım atölyemizde tiyatro metinleri yazmak, yazılı eserleri oyunlaştırmak, oyunlarımızın içini müzik eserleri ile donatmak için aşamalı bir eğitim sunuyoruz. İster kendi kurgunuz olan bir eseri isterseniz de hikâyesi oluşturulmuş ama sahneye çıkamamış bir eseri oyun haline getirmek isteyin, yolumuz ve amacımız aynıdır. Bir fikrin doğru kitleye ulaştırılması da eserin iyi bir kalemden çıkması kadar önem taşır. Bu nedenle eser oluşturmadaki bir sonraki amacımız kitlesine uygun eser ortaya koymaktır.</p>
+                <p>Tiyatro yazım türleri kendi içinde çok çeşitli dallara bölünür. Her dal kendine has bir kitleye hitap eder. Her ne kadar oyun afişlerinde "7'den 70'e" gibi genel ifadeler yahut "13 yaş ve üzeri" gibi yarı sınırlı ifadeler olsa da her oyun herkese hitap etmez, edemez. Komedi, trajedi, dram, gerilim diye ayırmak türlerine göre ayırmak olabilir ama yine de hedef kitlesine göre ayırmak sayılmaz.</p>
+                <p>Çocuk oyunları ülkemizde en önemli ve en narin alandır. Yazarından yönetmenine, oyuncusundan rejisine kadar her çalışma grubu hedefteki çocuklara özel hazırlanmalıdır. Tabii ki ilk hassasiyet yazarda başlar. Eğitimlerimizde bu alan özel ve itinalı bir çalışma yürütürüz.</p>
+            </div>
+        </details>
 
-    const iletisimHTML = `<h2>İletişim</h2><div class="contact-info"><p>📧 <strong>E-posta:</strong> umudarota@hotmail.com</p></div>`;
+        <details>
+            <summary>SİNEMA</summary>
+            <div style="margin-top:0.8rem;">
+                <p>Beyaz Perde. Bizim koskoca bir ekranla, karanlık bir ortamda baş başa kaldığımız, kendi dünyamıza yeni bir dünya kattığımız 1900'lerin icadı ve geleceğin mimarı o muhteşem sanat. İnsan aklının sınırlarını zorlayan görseller, nefes kesen aksiyonlar, yüreğimizi paramparça eden dramatik anlar… işte tüm bunlar ilk önce, herkesten önce senaristin zihninde oluşuyor. Tüm yazım kurallarından ayrı bu büyülü dünyanın tercümanı olmak, oyuncuya karakter, yönetmene tarz vermek tabiri caizse senaristin eseridir. Bu nedenle senaryo yazmak, sinema dilini bilmek, sinema için bir şeyler yapabilmek için kurduğumuz bu atölye size bir filmi herkesten önce izleme imkânı sunar. Oyuncu oynamadan, yönetmen çekmeden, montaj bitmeden siz jeneriğine kadar izlersiniz bu filmi. Hem de binlerce farklı varyasyonuyla.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>EDEBİYAT</summary>
+            <div style="margin-top:0.8rem;">
+                <p>Edebî eser yazmak kişisel yetenek ve eseri ortaya çıkaracak kadar yeterlilik ister. Ancak her yetenek eğitilip kalıplara girdikçe gözlemlenebilir. Gerçek yetenek girdiği kalıbın şeklini değiştirebilecek, avangart atılımlar yapabilecek düzeye gelmek ister. Bu yüzden bir yetenek bu kalıplara hâkim olmak, kuralları özümseyip kendi kurallarıyla bütünleştirmek isterse o vakit eğitilmeye ihtiyaç duyar. Biz bu atölyemizde öncelikle yeteneği anlama, yeteneğin sınırlarını zorlama; sonrasında da kalıpların içinde kendini bulma çalışmaları yapıyoruz.</p>
+                <p><strong>Deneme · Hikâye · Roman · Makale</strong> türlerinde eserler çıkarmak için gidilecek yolu birlikte yürüyoruz.</p>
+            </div>
+        </details>
+        <p style="margin-top:1rem; font-style:italic; border-top:1px dashed #C5A059; padding-top:1rem;">📌 Atölyelerimiz her seviyeden yazara açıktır.</p>
+    `;
+
+    // MAKALELER
+    const makalelerHTML = `
+        <h2>Makaleler</h2>
+        <article>
+            <h3>İçimde Bir Deniz Var, Köpürüp Duruyor.</h3>
+            <p>Çocuklarımızla iletişim kurmak her geçen gün daha karmaşık bir hal alıyor. Bu konuda da tabiri caizse ağzı olan konuşuyor. Bizim de bir ağzımız var ve birkaç şey de biz söyleyelim dedik.</p>
+            <p>Çocukların fevri davranışlarını ve aniden ortaya çıkan ataklarını anne babalar olarak anlamlandıramıyoruz. Bazen "Ben çok ilgili bir anneyim/babayım. O yüzden çocuk şımarıyor ve beni kullanıyor." hissine kapılıyoruz. Bazen de "Bu çocuk ne ara bu duruma geldi, ben hiç mi fark edemedim bu gelişmeleri?" diye sorup kendimize yükleniyoruz. Televizyonda uzmanlar, okulda öğretmenler sürekli sorunun çocukların ekran sürelerinde olduğunu hatırlatıyor ve onları ekranlardan uzak tutmanın sorunu çözmede büyük bir adım olacağını söylüyor. Ama sadece adım. Yani sorunun kaynağı hâlâ yerinde. Ama biz istiyoruz ki o sorun tümden buhar olup uçsun. Öyle bir sorun bizim çocuğumuzla aramıza girmesin. Mümkün mü?</p>
+            <p>Kendi çocukluğunuza dönün demeyeceğim. Çünkü hemen hemen herkes bu soruyu sorduktan sonra ilk kendi çocukluğu ile kıyaslar. Bizden öncekilerin bizi anlamadığını düşündüğümüz gibi bizim çocuklarımız da bizim onları anlamadığımızı düşünüyor. Bu sadece teknolojinin eseri değil. Bundan bin yıl önce de ebeveynleri ile çocukları arasında aynı iletişim sorunları vardı. Çünkü insan yaratıldığı günden beri ergenlik denen o müphem süreci yaşıyor. Anatomi bunu gerektiriyor. Fıtratta bu var... ve ilginç bir şey söyleyeyim mi? Bundan sonra da olacak. Peki biz ne yapacağız? Nitekim bizden öncekilerin bize yaptıklarından pek memnun olmadık. ☺</p>
+            <p>Çocuğun ağzından dökülmeyen şu cümleye kulak vereceğiz: <strong>"İçimde bir deniz var. Köpürüp duruyor."</strong> Biz bunu anladıktan sonra yol gösterebiliriz. Onu anlamaya çalışabiliriz. Ama orada da çok dikkatli adımlar atmalı değil mi? "Gel bana anlat" doğru bir cümle mi? Mesela anlatsa, enikonu bütün işinizi bırakıp onu dinlesek bile ne kadar anlayabileceğiz. O bizim anne/baba olduğumuzu bir kenara bırakıp ne kadar anlatabilecek?</p>
+            <p>Çocuğumuz içindeki denizin köpüklerinden endişeleniyor, derinliğinden korkuyorsa ona boş bir kâğıt verelim. O denizi bir okyanusa akıtsın. Kelimelerin okyanusuna. Sahip olduğu duyguları hiçbir etiketlenme endişesi olmadan döksün o okyanusa. Başka denizlerin suyuna karışsın tuzu. Ait olduğunu hissettiği her yerden münezzeh bir özgürlüğü, cumhuriyeti olsun. Yazmayı öğütleyelim çocuklarımıza. İçinde taşımaya korktuğu, ağırlığıyla yorulduğu her şeyin durulacağı bir deniz verelim onlara. Kıyısında oturup gün batımının sükûnetini izlesin, rüzgârın sesini dinlesin.</p>
+            <div class="signature-quote" style="margin-top:1.5rem;">Serpilhan Kanıbol - Yazı Terapisi</div>
+        </article>
+    `;
+
+    // MAĞAZA
+    const magazaHTML = `
+        <h2>Mağaza</h2>
+        <p>Yakında dijital yazı atölyeleri, rehber kitaplar ve yaratıcı yazı defterleri burada olacak.</p>
+        <div style="background:#2d0a3d10; border-radius:24px; padding:1rem; text-align:center; margin-top:1rem;">
+            🖋️ Kalemini hazırla, ilhamımızı paylaşacağız.
+        </div>
+    `;
+
+    // İLETİŞİM
+    const iletisimHTML = `
+        <h2>İletişim</h2>
+        <div class="contact-info">
+            <p>📧 <strong>E-posta:</strong> umudarota@hotmail.com</p>
+        </div>
+    `;
 
     const pages = {
         anasayfa: anasayfaHTML,
@@ -208,66 +322,33 @@
     };
 
     function renderPage(pageId) {
-        document.getElementById("mainContent").innerHTML = pages[pageId] || "<p>Sayfa bulunamadı.</p>";
-        document.querySelectorAll(".nav-btn").forEach(function(btn) {
-            btn.classList.toggle("active", btn.getAttribute("data-page") === pageId);
+        const contentDiv = document.getElementById("mainContent");
+        if (pages[pageId]) {
+            contentDiv.innerHTML = pages[pageId];
+        } else {
+            contentDiv.innerHTML = "<p>Sayfa bulunamadı.</p>";
+        }
+        const buttons = document.querySelectorAll(".nav-btn");
+        buttons.forEach(btn => {
+            const pageVal = btn.getAttribute("data-page");
+            if (pageVal === pageId) btn.classList.add("active");
+            else btn.classList.remove("active");
         });
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    document.querySelectorAll(".nav-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
-            renderPage(this.getAttribute("data-page"));
+    function initNavigation() {
+        const buttons = document.querySelectorAll(".nav-btn");
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const page = btn.getAttribute("data-page");
+                if (page && pages[page]) renderPage(page);
+            });
         });
-    });
+    }
 
     renderPage("anasayfa");
-
-    // SLIDER
-    (function() {
-        var track = document.getElementById("heroTrack");
-        var dots = document.getElementById("heroDots");
-        if (!track || !dots) return;
-
-        var images = [
-            "serpilhan-kanibol-kanli-postal-film-seti.png.png",
-            "serpilhan-kanibol-devlet-tiyatrolari-60-yil.png.png",
-            "serpilhan-kanibol-yaratici-drama-egitimi.png.png",
-            "serpilhan-kanibol-oyuncu-film-seti.png.png",
-            "serpilhan-kanibol-tiyatro-sahnesi-oyun.png.png"
-        ];
-        var current = 0;
-
-        images.forEach(function(src, i) {
-            var img = document.createElement("img");
-            img.src = src;
-            img.alt = "Serpilhan Kanıbol";
-            track.appendChild(img);
-
-            var dot = document.createElement("span");
-            if (i === 0) dot.className = "active";
-            dot.onclick = function() { goTo(i); };
-            dots.appendChild(dot);
-        });
-
-        function goTo(i) {
-            current = i;
-            track.style.transform = "translateX(-" + (current * 100) + "%)";
-            dots.querySelectorAll("span").forEach(function(d, idx) { d.className = (idx === i) ? "active" : ""; });
-        }
-
-        document.getElementById("heroPrev").onclick = function() { current = (current - 1 + images.length) % images.length; goTo(current); };
-        document.getElementById("heroNext").onclick = function() { current = (current + 1) % images.length; goTo(current); };
-
-        var box = document.getElementById("heroSlider"), startX = 0;
-        box.addEventListener("touchstart", function(e) { startX = e.touches[0].clientX; });
-        box.addEventListener("touchend", function(e) {
-            var diff = startX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) { diff > 0 ? document.getElementById("heroNext").click() : document.getElementById("heroPrev").click(); }
-        });
-
-        goTo(0);
-    })();
+    initNavigation();
 </script>
 </body>
 </html>
