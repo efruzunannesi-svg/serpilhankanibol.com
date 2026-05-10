@@ -412,10 +412,17 @@
         });
     }
 
-    // SLIDER
+    // SLIDER (Garantili)
     (function() {
         var track = document.getElementById("heroTrack");
         var dots = document.getElementById("heroDots");
+        
+        // Eğer slider elementleri yoksa dur
+        if (!track || !dots) {
+            console.log("Slider elementleri bulunamadı");
+            return;
+        }
+
         var sliderImages = [
             "serpilhan-kanibol-kanli-postal-film-seti.png.png",
             "serpilhan-kanibol-devlet-tiyatrolari-60-yil.png.png",
@@ -425,10 +432,14 @@
         ];
         var current = 0;
 
-        sliderImages.forEach(function(img, i) {
+        // Resimleri ve noktaları oluştur
+        sliderImages.forEach(function(imgSrc, i) {
             var image = document.createElement("img");
-            image.src = img;
+            image.src = imgSrc;
             image.alt = "Serpilhan Kanıbol";
+            image.style.minWidth = "100%";
+            image.style.height = "100%";
+            image.style.objectFit = "cover";
             track.appendChild(image);
 
             var dot = document.createElement("span");
@@ -440,29 +451,41 @@
         function goTo(i) {
             current = i;
             track.style.transform = "translateX(-" + (current * 100) + "%)";
-            dots.querySelectorAll("span").forEach(function(d, idx) { d.className = (idx === i) ? "active" : ""; });
+            var allDots = dots.querySelectorAll("span");
+            allDots.forEach(function(d, idx) { d.className = (idx === i) ? "active" : ""; });
         }
 
-        document.getElementById("heroPrev").onclick = function() {
+        // Oklar
+        var prevBtn = document.getElementById("heroPrev");
+        var nextBtn = document.getElementById("heroNext");
+        if (prevBtn) prevBtn.onclick = function() {
             current = (current - 1 + sliderImages.length) % sliderImages.length;
             goTo(current);
         };
-        document.getElementById("heroNext").onclick = function() {
+        if (nextBtn) nextBtn.onclick = function() {
             current = (current + 1) % sliderImages.length;
             goTo(current);
         };
 
         // Dokunmatik
+        var sliderBox = document.getElementById("heroSlider");
         var touchStart = 0;
-        document.getElementById("heroSlider").addEventListener("touchstart", function(e) { touchStart = e.touches[0].clientX; });
-        document.getElementById("heroSlider").addEventListener("touchend", function(e) {
-            var diff = touchStart - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) { diff > 0 ? document.getElementById("heroNext").click() : document.getElementById("heroPrev").click(); }
-        });
+        if (sliderBox) {
+            sliderBox.addEventListener("touchstart", function(e) { touchStart = e.touches[0].clientX; });
+            sliderBox.addEventListener("touchend", function(e) {
+                var diff = touchStart - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) { 
+                    if (diff > 0) { nextBtn ? nextBtn.click() : null; }
+                    else { prevBtn ? prevBtn.click() : null; }
+                }
+            });
+        }
+
+        // Başlangıç
+        goTo(0);
+        console.log("Slider hazır: " + sliderImages.length + " resim");
     })();
 
-    renderPage("anasayfa");
-    initNavigation();
 </script>
 </body>
 </html>
