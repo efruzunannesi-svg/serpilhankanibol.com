@@ -49,7 +49,6 @@
             text-shadow: 2px 2px 0 #1A237E;
             cursor: default;
         }
-        /* LOGO - tamamen kareyi dolduruyor, hiç boşluk yok */
         .logo-area {
             display: flex;
             align-items: center;
@@ -64,6 +63,61 @@
             object-fit: cover;
             display: block;
         }
+
+        /* SLIDER */
+        .slider-box {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #2d0a3d;
+            border-bottom: 2px solid #C5A059;
+        }
+        .slider-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        .slider-track img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20,10,30,0.6);
+            color: #F5F5DC;
+            border: 1px solid #C5A059;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 12px 18px;
+            border-radius: 50%;
+            z-index: 10;
+            transition: 0.3s;
+        }
+        .slider-arrow:hover { background: #C5A059; color: #2d0a3d; }
+        .slider-arrow.left { left: 20px; }
+        .slider-arrow.right { right: 20px; }
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+        .slider-dots span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .slider-dots span.active { background: #C5A059; }
+
         .nav-row {
             background-color: #F5F5DC;
             padding: 0.9rem 1.5rem;
@@ -186,6 +240,8 @@
                 width: 80px;
                 height: 80px;
             }
+            .slider-box { height: 250px; }
+            .slider-arrow { padding: 8px 14px; font-size: 18px; }
             .nav-row {
                 gap: 0.5rem;
                 padding: 0.8rem;
@@ -211,39 +267,15 @@
             <img id="siteLogo" src="favicon.png" alt="Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%232d0a3d\'/%3E%3Ctext x=\'50\' y=\'68\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23C5A059\' font-family=\'Arial\' font-weight=\'bold\'%3ESK%3C/text%3E%3C/svg%3E'">
         </div>
     </div>
-    <div class="top-slider-container" style="position: relative; width: 100%; height: 400px; overflow: hidden; background: #2d0a3d; border-bottom: 2px solid #C5A059;">
-        <div class="top-slides" id="top-slides" style="display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="top-slide" style="min-width: 100%; height: 100%;">
-                <img src="images/serpilhan-kanibol-kanli-postal-film-seti.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Film Seti">
-            </div>
-            <div class="top-slide" style="min-width: 100%; height: 100%;">
-                <img src="images/serpilhan-kanibol-devlet-tiyatrolari-60-yil.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Tiyatro">
-            </div>
-            <div class="top-slide" style="min-width: 100%; height: 100%;">
-                <img src="images/serpilhan-kanibol-yaratici-drama-egitimi.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Eğitim">
-            </div>
-            <div class="top-slide" style="min-width: 100%; height: 100%;">
-                <img src="images/serpilhan-kanibol-oyuncu-film-seti.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Set">
-            </div>
-        </div>
 
-        <button onclick="changeTopSlide(-1)" style="position: absolute; top: 50%; left: 20px; transform: translateY(-50%); background: rgba(20, 10, 30, 0.6); color: #F5F5DC; border: 1px solid #C5A059; font-size: 20px; cursor: pointer; padding: 12px 18px; border-radius: 50%; z-index: 10; transition: 0.3s;">❮</button>
-        <button onclick="changeTopSlide(1)" style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(20, 10, 30, 0.6); color: #F5F5DC; border: 1px solid #C5A059; font-size: 20px; cursor: pointer; padding: 12px 18px; border-radius: 50%; z-index: 10; transition: 0.3s;">❯</button>
+    <!-- SLIDER -->
+    <div class="slider-box" id="heroSlider">
+        <div class="slider-track" id="heroTrack"></div>
+        <button class="slider-arrow left" id="heroPrev">❮</button>
+        <button class="slider-arrow right" id="heroNext">❯</button>
+        <div class="slider-dots" id="heroDots"></div>
     </div>
-    ```
 
-### ⚙️ JavaScript Fonksiyonunu Eklemeyi Unutmayın!
-
-Slider'ın çalışması için gerekli olan şu küçük kodu da, dosyanızın en altındaki `</script>` etiketinden hemen önce (yani `initNavigation();` satırının altına) ekleyin:
-
-```javascript
-    let topIndex = 0;
-    function changeTopSlide(n) {
-        const slides = document.getElementById('top-slides');
-        const total = slides.children.length;
-        topIndex = (topIndex + n + total) % total;
-        slides.style.transform = `translateX(-${topIndex * 100}%)`;
-    }
     <div class="nav-row" id="navMenu">
         <button class="nav-btn active" data-page="anasayfa">ANA SAYFA</button>
         <button class="nav-btn" data-page="yazimatolyesi">YAZIM ATÖLYESİ</button>
@@ -282,7 +314,7 @@ Slider'ın çalışması için gerekli olan şu küçük kodu da, dosyanızın e
         <p>Belki de birçok sorunuzun çözümü olacak bu yazma eylemi. <strong>Neden denemeyesiniz ki?</strong></p>
     `;
 
-    // YAZIM ATÖLYESİ (eksiksiz)
+    // YAZIM ATÖLYESİ
     const yazimAtolyesiHTML = `
         <h2>Yazım Atölyesi</h2>
         <p>Yazım Atölyesi sizin kendi ayağınızla geldiğiniz ancak kalbinizi ikna ettiğinizde gidebileceğiniz eğitimlerden oluşur. Bu eğitimler her tür yazının temeli olan önerme ile başlar. Bir eseri ortaya çıkmaya değer kılan en önemli unsur sizin elinize kalemi tutuşturan sebeptir. Bu sebep sizin derdinizdir. Dünyanın küresel sorunlarından tutun da saksınızda solan çiçeğe kadar her şey sizin derdiniz olabilir. Sizin dert edindiğinizin başka insanlarca bilinmesini istiyorsunuz ama onların dikkatini çekmenin yolunu bulamıyorsunuz. İşin bu kısmında size destek olacak şey devasa bir hoparlör yahut her yerde yanıp sönen neon ışıklar değil. Sizin kelimeleriniz. O kelimeler ki sizi onlara yaklaştıracak, sizin fikrinizi onlara taşıyacak, sizin derdinizle dertlenmelerini sağlayacak. İşte bunun için en temelde yazacağınız eser ne olursa olsun sağlam bir zemine bağlamalı ve o zeminin üzerinde dimdik durabilmelidir.</p>
@@ -342,7 +374,7 @@ Slider'ın çalışması için gerekli olan şu küçük kodu da, dosyanızın e
     const iletisimHTML = `
         <h2>İletişim</h2>
         <div class="contact-info">
-            <p>📧 <strong>E-posta:</strong> serpilhaninyazimatolyesi@gmail.com</p>
+            <p>📧 <strong>E-posta:</strong> umudarota@hotmail.com</p>
         </div>
     `;
 
@@ -379,6 +411,55 @@ Slider'ın çalışması için gerekli olan şu küçük kodu da, dosyanızın e
             });
         });
     }
+
+    // SLIDER
+    (function() {
+        var track = document.getElementById("heroTrack");
+        var dots = document.getElementById("heroDots");
+        var sliderImages = [
+            "serpilhan-kanibol-kanli-postal-film-seti.png.png",
+            "serpilhan-kanibol-devlet-tiyatrolari-60-yil.png.png",
+            "serpilhan-kanibol-yaratici-drama-egitimi.png.png",
+            "serpilhan-kanibol-oyuncu-film-seti.png.png",
+            "serpilhan-kanibol-tiyatro-sahnesi-oyun.png.png"
+        ];
+        var current = 0;
+
+        sliderImages.forEach(function(img, i) {
+            var image = document.createElement("img");
+            image.src = img;
+            image.alt = "Serpilhan Kanıbol";
+            track.appendChild(image);
+
+            var dot = document.createElement("span");
+            if (i === 0) dot.className = "active";
+            dot.onclick = function() { goTo(i); };
+            dots.appendChild(dot);
+        });
+
+        function goTo(i) {
+            current = i;
+            track.style.transform = "translateX(-" + (current * 100) + "%)";
+            dots.querySelectorAll("span").forEach(function(d, idx) { d.className = (idx === i) ? "active" : ""; });
+        }
+
+        document.getElementById("heroPrev").onclick = function() {
+            current = (current - 1 + sliderImages.length) % sliderImages.length;
+            goTo(current);
+        };
+        document.getElementById("heroNext").onclick = function() {
+            current = (current + 1) % sliderImages.length;
+            goTo(current);
+        };
+
+        // Dokunmatik
+        var touchStart = 0;
+        document.getElementById("heroSlider").addEventListener("touchstart", function(e) { touchStart = e.touches[0].clientX; });
+        document.getElementById("heroSlider").addEventListener("touchend", function(e) {
+            var diff = touchStart - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? document.getElementById("heroNext").click() : document.getElementById("heroPrev").click(); }
+        });
+    })();
 
     renderPage("anasayfa");
     initNavigation();
